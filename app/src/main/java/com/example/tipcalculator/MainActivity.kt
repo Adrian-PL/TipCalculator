@@ -39,11 +39,13 @@ class MainActivity : AppCompatActivity() {
                 edit_text.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(8, 2))
                 val tip = text.toString().toDouble() * slider.value / 100
                 val total = tip + text.toString().toDouble()
+                val billPerson = text.toString().toDouble() / persons.text.toString().toDouble()
                 val tipPerson = tip / persons.text.toString().toInt()
                 val totalPerson = total / persons.text.toString().toInt()
                 text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
                         " Total cost: $${String.format("%.2f", total)}\n" +
                         " Tip per person: $${String.format("%.2f", tipPerson)}\n" +
+                        " Bill per person: $${String.format("%.2f", billPerson)}\n" +
                         " Total per person: $${String.format("%.2f", totalPerson)}"
             } else text_view.text = ""
         }
@@ -51,11 +53,13 @@ class MainActivity : AppCompatActivity() {
             if (edit_text.text.isNotEmpty() && persons.text.isNotEmpty()) {
                 val tip = edit_text.text.toString().toDouble() * value / 100
                 val total = tip + edit_text.text.toString().toDouble()
+                val billPerson = edit_text.text.toString().toDouble() / persons.text.toString().toDouble()
                 val tipPerson = tip / persons.text.toString().toInt()
                 val totalPerson = total / persons.text.toString().toInt()
                 text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
                         " Total cost: $${String.format("%.2f", total)}\n" +
                         " Tip per person: $${String.format("%.2f", tipPerson)}\n" +
+                        " Bill per person: $${String.format("%.2f", billPerson)}\n" +
                         " Total per person: $${String.format("%.2f", totalPerson)}"
             } else text_view.text = ""
         }
@@ -63,11 +67,13 @@ class MainActivity : AppCompatActivity() {
             if (edit_text.text.isNotEmpty() && persons.text.isNotEmpty()) {
                 val tip = edit_text.text.toString().toDouble() * slider.value / 100
                 val total = tip + edit_text.text.toString().toDouble()
+                val billPerson = edit_text.text.toString().toDouble() / persons.text.toString().toDouble()
                 val tipPerson = tip / text.toString().toInt()
                 val totalPerson = total / text.toString().toInt()
                 text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
                         " Total cost: $${String.format("%.2f", total)}\n" +
                         " Tip per person: $${String.format("%.2f", tipPerson)}\n" +
+                        " Bill per person: $${String.format("%.2f", billPerson)}\n" +
                         " Total per person: $${String.format("%.2f", totalPerson)}"
             } else text_view.text = ""
         }
