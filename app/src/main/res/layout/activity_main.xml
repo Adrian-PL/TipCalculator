@@ -11,6 +11,12 @@
         android:hint="Enter your bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/persons"
+        android:inputType="number"
+        android:hint="Enter number of payers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <com.google.android.material.slider.Slider
         android:id="@+id/slider"
         android:valueFrom="0"

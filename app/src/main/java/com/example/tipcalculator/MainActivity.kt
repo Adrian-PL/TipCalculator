@@ -35,20 +35,40 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         slider.setLabelFormatter(LabelFormatter { "${String.format("%.0f", slider.value)}%" })
         findViewById<EditText>(R.id.edit_text).doAfterTextChanged { text ->
-            if (edit_text.text.isNotEmpty()) {
+            if (edit_text.text.isNotEmpty() && persons.text.isNotEmpty()) {
                 edit_text.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(8, 2))
                 val tip = text.toString().toDouble() * slider.value / 100
                 val total = tip + text.toString().toDouble()
+                val tipPerson = tip / persons.text.toString().toInt()
+                val totalPerson = total / persons.text.toString().toInt()
                 text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
-                        " Total cost: $${String.format("%.2f", total)}"
+                        " Total cost: $${String.format("%.2f", total)}\n" +
+                        " Tip per person: $${String.format("%.2f", tipPerson)}\n" +
+                        " Total per person: $${String.format("%.2f", totalPerson)}"
             } else text_view.text = ""
         }
         findViewById<Slider>(R.id.slider).addOnChangeListener { _, value, _ ->
-            if (edit_text.text.isNotEmpty()) {
+            if (edit_text.text.isNotEmpty() && persons.text.isNotEmpty()) {
                 val tip = edit_text.text.toString().toDouble() * value / 100
                 val total = tip + edit_text.text.toString().toDouble()
+                val tipPerson = tip / persons.text.toString().toInt()
+                val totalPerson = total / persons.text.toString().toInt()
                 text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
-                        " Total cost: $${String.format("%.2f", total)}"
+                        " Total cost: $${String.format("%.2f", total)}\n" +
+                        " Tip per person: $${String.format("%.2f", tipPerson)}\n" +
+                        " Total per person: $${String.format("%.2f", totalPerson)}"
+            } else text_view.text = ""
+        }
+        findViewById<EditText>(R.id.persons).doAfterTextChanged { text ->
+            if (edit_text.text.isNotEmpty() && persons.text.isNotEmpty()) {
+                val tip = edit_text.text.toString().toDouble() * slider.value / 100
+                val total = tip + edit_text.text.toString().toDouble()
+                val tipPerson = tip / text.toString().toInt()
+                val totalPerson = total / text.toString().toInt()
+                text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
+                        " Total cost: $${String.format("%.2f", total)}\n" +
+                        " Tip per person: $${String.format("%.2f", tipPerson)}\n" +
+                        " Total per person: $${String.format("%.2f", totalPerson)}"
             } else text_view.text = ""
         }
     }
