@@ -36,15 +36,19 @@ class MainActivity : AppCompatActivity() {
         slider.setLabelFormatter(LabelFormatter { "${String.format("%.0f", slider.value)}%" })
         findViewById<EditText>(R.id.edit_text).doAfterTextChanged { text ->
             if (edit_text.text.isNotEmpty()) {
-                edit_text.setFilters(arrayOf<InputFilter>(DecimalDigitsInputFilter(8, 2)))
+                edit_text.filters = arrayOf<InputFilter>(DecimalDigitsInputFilter(8, 2))
                 val tip = text.toString().toDouble() * slider.value / 100
-                text_view.text = " Tip amount: $${String.format("%.2f", tip)}"
+                val total = tip + text.toString().toDouble()
+                text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
+                        " Total cost: $${String.format("%.2f", total)}"
             } else text_view.text = ""
         }
         findViewById<Slider>(R.id.slider).addOnChangeListener { _, value, _ ->
             if (edit_text.text.isNotEmpty()) {
                 val tip = edit_text.text.toString().toDouble() * value / 100
-                text_view.text = " Tip amount: $${String.format("%.2f", tip)}"
+                val total = tip + edit_text.text.toString().toDouble()
+                text_view.text = " Tip amount: $${String.format("%.2f", tip)}\n" +
+                        " Total cost: $${String.format("%.2f", total)}"
             } else text_view.text = ""
         }
     }
